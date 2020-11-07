@@ -28,3 +28,4 @@ admin.site.register(models.User, UserAdmin)
 # No user is required , as it will use the "loged in user"
 admin.site.register(models.Tag)
 admin.site.register(models.Ingredient)
+admin.site.register(models.Recipe)
