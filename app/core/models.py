@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
     PermissionsMixin
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -39,3 +40,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
     USERNAME_FIELD = 'email'
+
+# ------------------------------------------------------------
+# We define the Tag object as a name and a User
+# the  tag is part of the user, so if the user is deleted, all its tags will be deleted
+# we also define the string representation of the tag, wich contains only the name
+# ------------------------------------------------------------
+
+
+class Tag(models.Model):
+    """Tag to be used for a recipe"""
+    name = models.CharField(max_length=200)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.name
