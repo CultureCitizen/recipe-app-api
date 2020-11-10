@@ -128,6 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = '/vol/web/media'
+STATIC_ROOT = '/vol/web/static'
 
 # --------------------------------------------------------------------------
 # The user is provided by the class User in the module core
